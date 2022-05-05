@@ -1,0 +1,1 @@
+export { default as TitH1 } from './ui/atoms/TitH1';
