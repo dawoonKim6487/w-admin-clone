@@ -1,12 +1,15 @@
 import React from 'react';
-import './App.css';
-import { TitH1 } from 'components'
+import { Routes, Route } from "react-router-dom";
+import Home from './pages/home'
+
 
 function App() {
   return (
     <div className="App">
-      <TitH1></TitH1>
-      <h1 className='bg-slate-500'>123123</h1>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/e' element={<div>home</div>} />
+      </Routes>
     </div>
   );
 }
