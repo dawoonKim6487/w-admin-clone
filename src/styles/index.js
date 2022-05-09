@@ -4,9 +4,9 @@ export const defaultFont = (size) => twc(
     size ? `text-${size}` : "",
 )
 
-export const flexStyle = (vertical, gap, flex) => twc(
+export const flexStyle = (vertical, gap, flex, between) => twc(
     'flex',
-    'justify-between',
+    between ? 'justify-between' : 'justify-start',
     'items-center',
     vertical ? 'flex-col' : 'flex-row',
     gap ? `gap-${gap}` : '',
