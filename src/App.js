@@ -6,7 +6,7 @@ import News from './pages/news'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App h-screen">
       <Routes>
         <Route path='/' element={<Home />} />
 

@@ -1,4 +1,4 @@
-import { SubHeader, SubHeaderNav } from 'components';
+import { SubHeader, SubHeaderNav, Board } from 'components';
 import MainTemplate from 'pages/template/MainTemplate';
 import React from 'react'
 import { useParams } from "react-router-dom";
@@ -14,7 +14,7 @@ const proRoute = [
     { id: 1, name: '사용자 게시판', path: '/' },
 ]
 
-const Home = ({ children }) => {
+const Home = () => {
     const { mode } = useParams()
 
     return (
@@ -23,8 +23,7 @@ const Home = ({ children }) => {
                 <SubHeaderNav route={homeRoute}>홈페이지 사용자 게시판</SubHeaderNav>
                 <SubHeaderNav route={proRoute}>Pro 사용자 게시판</SubHeaderNav>
             </SubHeader>
-            {mode}
-            {children}
+            <Board tit={mode}>{mode}</Board>
         </MainTemplate>
     )
 }

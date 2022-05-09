@@ -3,7 +3,7 @@ import React from 'react'
 
 const MainTemplate = ({ children }) => {
     return (
-        <div className="wrap">
+        <div className="wrap h-full">
             <Header />
             {children}
         </div>

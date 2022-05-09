@@ -15,9 +15,11 @@ const DropBtn = ({ children, name, onClick }) => {
     return (
         <button className={btnStyle} onClick={onClick}>
             <span className='text-white'>{label}</span>
-            <div className="ml-2">
-                {children}
-            </div>
+            {
+                children ? <div className="ml-2">
+                    {children}
+                </div> : ""
+            }
         </button>
     )
 };
