@@ -1,4 +1,5 @@
 export { default as Text } from './ui/atoms/SmText';
+export { default as Button } from './ui/atoms/Button';
 
 export { default as HeaderNav } from './ui/molecules/headerNav'
 

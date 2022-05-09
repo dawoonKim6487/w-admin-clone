@@ -12,3 +12,8 @@ export const flexStyle = (vertical, gap, flex) => twc(
     gap ? `gap-${gap}` : '',
     flex ? `flex-${flex}` : ""
 )
+
+export const aniOpt = (delay) => twc(
+    'transition', 'ease-in-out', delay ? `delay-${delay}` : "",
+    'duration-300'
+)

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Text, HeaderNav } from 'components';
+import { HeaderNav } from 'components';
 import { flexStyle } from 'styles'
 import { classnames as twc } from 'tailwindcss-classnames';
+import DropDown from '../molecules/dropdown';
 
 const headTheme = twc(
     'p-5',
@@ -19,11 +20,11 @@ const navBlock = twc(
 const Header = () => {
     return (
         <header className={headTheme}>
-            <Text color='w' size='3xl'>Admin</Text>
+            <h1 className='text-2xl text-white font-bold'>우성 소프트</h1>
             <div className={navBlock}>
                 <HeaderNav />
             </div>
-            <div className="btn">버튼</div>
+            <div className="btn"><DropDown /></div>
         </header>
     )
 }
