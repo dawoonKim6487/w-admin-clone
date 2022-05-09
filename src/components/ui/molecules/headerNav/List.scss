@@ -1,0 +1,11 @@
+.nav__list {
+    a {
+        &:hover {
+            @apply text-white underline decoration-1 underline-offset-8;
+        }
+
+        &.active {
+            @apply text-white;
+        }
+    }
+}

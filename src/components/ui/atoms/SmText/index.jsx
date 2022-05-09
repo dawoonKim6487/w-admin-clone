@@ -1,14 +1,21 @@
 import React from 'react';
-import tw from 'tailwind-styled-components'
-import { fontSize, fontColor } from '../utils';
+import { classnames as twc } from 'tailwindcss-classnames';
+import { defaultFont } from 'styles'
 
-const SpanStyle = tw.span`
-    ${props => fontSize(props.size)}
-    ${props => fontColor(props.color)}
-    ${props => props.bold ? 'font-bold' : ''}
-`
+const SmText = ({ children, bold, color, size }) => {
+    const className = twc(
+        color === 'w' ? 'text-white' : "",
+        bold ? 'text-bold' : "",
+        defaultFont(size),
+    )
 
-const SmText = ({ children, bold, color, size }) => <SpanStyle size={size} bold={bold} color={color}>{children}</SpanStyle>
+    return (
+        <span className={className}>
+            {children}
+        </span>
+    );
+}
+
 
 SmText.defaultProps = {
     bold: true,

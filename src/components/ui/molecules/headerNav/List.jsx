@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text } from 'components';
+import { NavLink } from 'react-router-dom';
+import './List.scss'
 
-
-const List = ({ children }) => {
+const List = ({ children, path }) => {
     return (
-        <li><Text size='lg'>{children}</Text></li>
+        <li className='nav__list'>
+            <NavLink to={path}>{children}</NavLink>
+        </li>
     )
 }
 
