@@ -1,20 +1,8 @@
-import React, { useState } from 'react';
-import { BoardTit, BoardBody, NextBtn, TableRow } from 'components';
+import React, { useState, useEffect } from 'react';
+import { BoardTit, BoardBody, TableRow, NormalBtn } from 'components';
+import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
+import axios from 'axios';
 
-const data = [
-    { id: 0, cate: '분류', tit: '제목1', date: '2020-01-01', join: 0 },
-    { id: 1, cate: '분류', tit: '제목2', date: '2020-01-01', join: 0 },
-    { id: 2, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-    { id: 3, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-    { id: 4, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-    { id: 5, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-    { id: 6, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-    { id: 7, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-    { id: 8, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-    { id: 9, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-    { id: 10, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-    { id: 11, cate: '분류', tit: '제목3', date: '2020-01-01', join: 0 },
-]
 const title = title => {
     switch (title) {
         case 'faq':
@@ -27,38 +15,78 @@ const title = title => {
             return '게시판'
     }
 };
+
+
 const Board = ({ tit }) => {
+    const [orginData, setOrginData] = useState([]); // 처음 가져온 값 (재 호출 하면 안됨)
+    const [board, setBoard] = useState([]); // 데이터 변환 (페이징, 검색)
+    const [page, setPage] = useState(0);
+
     const dataFilter = (data, page) => {
-        return data.filter((ele) => {
-            return ele.id < (page + 1) * 10 & ele.id >= page * 10
+        return data.filter((ele, index) => {
+            return index < (page + 1) * 10 & index >= page * 10
+        })
+    }
+    const URL = (tit) => {
+        switch (tit) {
+            case 'faq':
+                return 'https://www.wssw.kr/admin/wsapi/faq';
+            case 'qna':
+                return 'https://www.wssw.kr/admin/wsapi/qna';
+            case 'support':
+                return 'https://www.wssw.kr/admin/wsapi/support/allList';
+            default:
+                return 'https://www.wssw.kr/admin/wsapi/faq';
+        }
+    }
+    const getData = (URL) => {
+        axios.get(URL ? URL : 'https://www.wssw.kr/admin/wsapi/faq').then((res) => {
+            setOrginData(res.data.result)
         })
     }
 
-    const [page, setPage] = useState(0);
-    const [board, setBoard] = useState(dataFilter(data, page));
+    useEffect(() => {
+        // tit 가 변하면 API 다시 호출
+        getData(URL(tit));
+        return (() => {
+            console.log(tit, '렌더링 전')
+        })
+    }, [tit]);
+
+    useEffect(() => {
+        setBoard(dataFilter(orginData, page));
+    }, [orginData])
 
     const addPage = () => {
         if (board.length >= 10) {
-            const pageCtrl = page + 1
-            setBoard(dataFilter(data, pageCtrl))
+            const pageCtrl = page + 1 // 읽기 전용
+            setBoard(dataFilter(orginData, pageCtrl))
             setPage(pageCtrl)
         }
     };
+
     const minorPage = () => {
         if (page > 0) {
-            const pageCtrl = page - 1
-            setBoard(dataFilter(data, pageCtrl))
+            const pageCtrl = page - 1 // 읽기 전용
+            setBoard(dataFilter(orginData, pageCtrl))
             setPage(pageCtrl)
         }
     };
 
     return (
-        <div className='px-20 py-10 flex flex-col gap-5 h-full'>
+        <div className='px-20 py-10 flex flex-col gap-5'>
             <BoardTit>{title(tit)}</BoardTit>
-            <BoardBody data={data}>
-                {board.map((ele) => <TableRow data={ele} key={ele.id} />)}
+            <BoardBody>
+                {board.map((ele, index) => <TableRow data={ele} key={index} index={index + (page * 10)} />)}
             </BoardBody>
-            <NextBtn prev={minorPage} next={addPage} />
+            <div className="flex gap-2 justify-end">
+                <NormalBtn onClick={minorPage}>
+                    <AiFillCaretLeft size='18' />
+                </NormalBtn>
+                <NormalBtn onClick={addPage}>
+                    <AiFillCaretRight size='18' />
+                </NormalBtn>
+            </div>
         </div>
     )
 }

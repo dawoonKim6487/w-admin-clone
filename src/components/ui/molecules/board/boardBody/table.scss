@@ -11,7 +11,11 @@ table {
 
     tbody {
         tr {
-            @apply border-b
+            @apply border-b;
+
+            td {
+                @apply py-4;
+            }
         }
     }
 }
