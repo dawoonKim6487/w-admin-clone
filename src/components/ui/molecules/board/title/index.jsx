@@ -1,24 +1,28 @@
 import React from 'react';
-import { Button } from 'components';
 import { flexStyle } from 'styles';
 import { classnames as twc } from 'tailwindcss-classnames';
-import { AiOutlineEdit } from "react-icons/ai";
-
-
-const BoardTitle = ({ children }) => {
-
-    const onClick = () => {
-        console.log('버튼')
+const title = title => {
+    switch (title) {
+        case 'faq':
+            return '자주 묻는 질문'
+        case 'qna':
+            return '묻고 답하기'
+        case 'support':
+            return '공지사항'
+        default:
+            return '게시판'
     }
+};
+
+const BoardTitle = ({ tit }) => {
+
     const wrapStyle = () => twc(
         flexStyle(false, 0, false, true)
     )
     return (
         <div className={wrapStyle()}>
-            <h2 className='text-2xl'>{children}</h2>
-            <Button name='작성 하기' onClick={onClick}>
-                <AiOutlineEdit color='#fff' size='18' />
-            </Button>
+            <h2 className='text-2xl'>{title(tit)}</h2>
+
         </div>
     )
 }

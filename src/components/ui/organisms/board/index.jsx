@@ -1,32 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { BoardTit, BoardBody, TableRow, NormalBtn } from 'components';
+import { BoardBody, BoardOption, TableRow, NormalBtn } from 'components';
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import axios from 'axios';
 
-const title = title => {
-    switch (title) {
-        case 'faq':
-            return '자주 묻는 질문'
-        case 'qna':
-            return '묻고 답하기'
-        case 'support':
-            return '공지사항'
-        default:
-            return '게시판'
-    }
-};
+
 
 
 const Board = ({ tit }) => {
     const [orginData, setOrginData] = useState([]); // 처음 가져온 값 (재 호출 하면 안됨)
     const [board, setBoard] = useState([]); // 데이터 변환 (페이징, 검색)
     const [page, setPage] = useState(0);
+    const [cate, setCate] = useState([]);
+    const [activeCate, setActiveCate] = useState('전체');
 
     const dataFilter = (data, page) => {
         return data.filter((ele, index) => {
             return index < (page + 1) * 10 & index >= page * 10
         })
     }
+
+    const setActive = (event) => {
+        const cate = event.target.value;
+        setActiveCate(cate);
+        setPage(0);
+        if (cate === '전체') {
+            setBoard(dataFilter(orginData, 0));
+        }
+        else {
+            setBoard(orginData.filter((ele) => {
+                return ele.cate === cate
+            }))
+        }
+    }
+
+    const getCate = (data) => {
+        // 카테고리 추출
+        const set = new Set(data.map(ele => ele.cate))
+        return [...set]
+    }
+
     const URL = (tit) => {
         switch (tit) {
             case 'faq':
@@ -48,13 +60,14 @@ const Board = ({ tit }) => {
     useEffect(() => {
         // tit 가 변하면 API 다시 호출
         getData(URL(tit));
-        return (() => {
-            console.log(tit, '렌더링 전')
-        })
+        setPage(0);
+        setActiveCate('전체');
+
     }, [tit]);
 
     useEffect(() => {
         setBoard(dataFilter(orginData, page));
+        setCate(getCate(orginData))
     }, [orginData])
 
     const addPage = () => {
@@ -74,10 +87,11 @@ const Board = ({ tit }) => {
     };
 
     return (
-        <div className='px-20 py-10 flex flex-col gap-5'>
-            <BoardTit>{title(tit)}</BoardTit>
+        <>
+            <BoardOption options={cate} onChange={setActive} cate={activeCate} />
+            {activeCate}
             <BoardBody>
-                {board.map((ele, index) => <TableRow data={ele} key={index} index={index + (page * 10)} />)}
+                {board.map((ele, index) => <TableRow data={ele} key={index} index={index + (page * 10)} mode={tit} />)}
             </BoardBody>
             <div className="flex gap-2 justify-end">
                 <NormalBtn onClick={minorPage}>
@@ -87,7 +101,7 @@ const Board = ({ tit }) => {
                     <AiFillCaretRight size='18' />
                 </NormalBtn>
             </div>
-        </div>
+        </>
     )
 }
 

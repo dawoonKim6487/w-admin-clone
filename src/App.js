@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import Home from './pages/home'
+import Zoom from './pages/zoom'
 import News from './pages/news'
 
 
@@ -11,7 +12,21 @@ function App() {
         <Route path='/' element={<Home />} />
 
         <Route path='/board/*' element={<Home />}>
-          <Route path=':mode'></Route>
+          <Route path=':mode' />
+        </Route>
+
+
+        <Route path='/faq' element={<Zoom mode='faq' />}>
+          <Route path=':idx' />
+        </Route>
+
+        <Route path='/support' element={<Zoom mode='support' />}>
+          <Route path=':idx' />
+        </Route>
+
+
+        <Route path='/qna' element={<Zoom mode='qna' />}>
+          <Route path=':idx' />
         </Route>
 
         <Route path='/page1' element={<News />} />

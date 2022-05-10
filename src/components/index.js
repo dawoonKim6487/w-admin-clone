@@ -1,5 +1,7 @@
 export { default as Text } from './ui/atoms/SmText';
 export { default as Button } from './ui/atoms/Button';
+export { default as Input } from './ui/atoms/Input';
+export { default as Option } from './ui/atoms/Opt';
 export { default as NormalBtn } from './ui/atoms/NormalBtn';
 
 export { default as HeaderNav } from './ui/molecules/header/headerNav'
@@ -17,3 +19,7 @@ export { default as NextBtn } from './ui/molecules/board/nextBtn'
 export { default as Header } from './ui/organisms/header'
 export { default as SubHeader } from './ui/organisms/subHeader'
 export { default as Board } from './ui/organisms/board'
+
+
+export { default as BoardSubnav } from '../pages/template/boardSubnav'
+
