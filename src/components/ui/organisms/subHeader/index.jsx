@@ -5,7 +5,7 @@ const SubHeader = ({ children }) => {
 
     const style = tw(
         flexStyle(false, 5, 1, false),
-        'border-b', 'px-5', 'py-2'
+        'border-b', 'px-1', 'py-2'
     )
 
     return (

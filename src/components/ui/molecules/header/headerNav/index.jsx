@@ -4,7 +4,7 @@ import List from './List';
 // import { flexStyle } from 'styles'
 
 
-const HeaderNav = () => {
+const HeaderNav = ({ gap }) => {
     const routes = [
         { id: 0, name: '게시판', path: '/' },
         { id: 1, name: '농업계 소식', path: '/page1' },
@@ -15,7 +15,7 @@ const HeaderNav = () => {
         { id: 6, name: '기타', path: '/page6' },
     ]
     return (
-        <ul className='flex gap-8'>
+        <ul className={`flex flex-wrap justify-start gap-${gap ? gap : 8}`}>
             {routes.map((ele) => <List path={ele.path} key={ele.id}>{ele.name}</List>)}
         </ul>
     )

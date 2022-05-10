@@ -16,7 +16,7 @@ const DropDown = () => {
 
     return (
         <div className='relative'>
-            <Button name='우성 홈페이지 바로가기' onClick={onClick}>
+            <Button name='바로가기' onClick={onClick}>
                 <AiFillCaretDown color='#fff' />
             </Button>
             <DropList dropState={drop} marginList={true}>

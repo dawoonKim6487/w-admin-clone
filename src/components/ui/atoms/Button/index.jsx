@@ -9,12 +9,12 @@ const DropBtn = ({ children, name, onClick }) => {
     const btnStyle = twc(
         flexStyle(false),
         'bg-c-main-deep',
-        'px-5', 'py-2', 'rounded-xl', 'drop-shadow-md',
+        'px-2', 'py-2', 'rounded-md', 'drop-shadow-md',
         'active:bg-blue-600'
     )
     return (
         <button className={btnStyle} onClick={onClick}>
-            <span className='text-white'>{label}</span>
+            <span className='text-white text-sm lg:text-md'>{label}</span>
             {
                 children ? <div className="ml-2">
                     {children}

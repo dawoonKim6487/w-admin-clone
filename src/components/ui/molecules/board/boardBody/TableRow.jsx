@@ -5,12 +5,14 @@ const TableRow = ({ data, index, mode }) => {
     const { cate, tit, date, join, title, idx } = data;
     const path = `/${mode}/${idx}`
     return (
-        <tr className='cursor-pointer hover:bg-slate-100'>
-            <td className='w-1/12'>{index + 1}</td>
+        <tr className='cursor-pointer'>
+            <td className='hidden lg:table-cell w-1/12'>{index + 1}</td>
             <td className='w-1/12'>{cate}</td>
             <td className='text-left'>
-                <Link to={path}>
-                    {tit ? tit : title}
+                <Link to={path} >
+                    <span className='hover:text-orange-700'>
+                        {tit ? tit : title}
+                    </span>
                 </Link>
             </td>
             <td className='w-1/12'>{dayjs(date).format('YYYY-MM-DD')}</td>

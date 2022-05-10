@@ -14,11 +14,10 @@ const proRoute = [
 
 
 const subHead = () => {
-
     return (
         <SubHeader>
-            <SubHeaderNav route={homeRoute}>홈페이지 사용자 게시판</SubHeaderNav>
-            <SubHeaderNav route={proRoute}>Pro 사용자 게시판</SubHeaderNav>
+            <SubHeaderNav route={homeRoute}>홈페이지 게시판</SubHeaderNav>
+            <SubHeaderNav route={proRoute}>Pro 게시판</SubHeaderNav>
         </SubHeader>
     )
 }

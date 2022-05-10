@@ -3,9 +3,6 @@ import { BoardBody, BoardOption, TableRow, NormalBtn } from 'components';
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import axios from 'axios';
 
-
-
-
 const Board = ({ tit }) => {
     const [orginData, setOrginData] = useState([]); // 처음 가져온 값 (재 호출 하면 안됨)
     const [board, setBoard] = useState([]); // 데이터 변환 (페이징, 검색)
@@ -89,7 +86,6 @@ const Board = ({ tit }) => {
     return (
         <>
             <BoardOption options={cate} onChange={setActive} cate={activeCate} />
-            {activeCate}
             <BoardBody>
                 {board.map((ele, index) => <TableRow data={ele} key={index} index={index + (page * 10)} mode={tit} />)}
             </BoardBody>

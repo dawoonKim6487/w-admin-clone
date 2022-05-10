@@ -5,26 +5,44 @@ import { classnames as twc } from 'tailwindcss-classnames';
 
 const headTheme = twc(
     'p-5',
-    'gap-20',
     'bg-c-main',
-    flexStyle(false),
+    'flex',
+    'gap-10',
+    'mb:gap-20',
+    'justify-between',
+    'items-center'
 )
 
 const navBlock = twc(
     flexStyle(false, 5),
     'flex-1',
-    'gap-5'
+    'gap-5',
+    'hidden',
+    'lg:block'
+)
+
+const moNav = twc(
+    flexStyle(false, 2),
+    'border-b',
+    'px-1', 'py-2',
+    'lg:hidden',
+    'block'
 )
 
 const Header = () => {
     return (
-        <header className={headTheme}>
-            <h1 className='text-2xl text-white font-bold'>우성 소프트</h1>
-            <div className={navBlock}>
-                <HeaderNav />
+        <>
+            <header className={headTheme}>
+                <h1 className='lg:text-2xl text-xl text-white font-bold'>우성 소프트</h1>
+                <div className={navBlock}>
+                    <HeaderNav />
+                </div>
+                <div className="btn"><DropDown marginList={false} /></div>
+            </header>
+            <div className={moNav}>
+                <HeaderNav gap={2} />
             </div>
-            <div className="btn"><DropDown marginList={false} /></div>
-        </header>
+        </>
     )
 }
 

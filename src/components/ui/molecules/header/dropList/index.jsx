@@ -3,7 +3,7 @@ import { classnames as twc } from 'tailwindcss-classnames'
 import { aniOpt } from 'styles'
 
 const dropStyle = (marginList) => twc(
-    'absolute', 'bg-white', 'w-full', 'rounded', 'drop-shadow-xl',
+    'absolute', 'bg-white', 'w-full', 'rounded', 'drop-shadow-xl', 'z-50',
     'border', 'p-1', aniOpt(2000), marginList ? 'mt-2' : ""
 )
 
