@@ -19,6 +19,7 @@ export { default as NextBtn } from './ui/molecules/board/nextBtn'
 export { default as Header } from './ui/organisms/header'
 export { default as SubHeader } from './ui/organisms/subHeader'
 export { default as Board } from './ui/organisms/board'
+export { default as Login } from './ui/organisms/Login'
 
 
 export { default as BoardSubnav } from '../pages/template/boardSubnav'

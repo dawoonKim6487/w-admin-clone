@@ -4,7 +4,8 @@ import { flexStyle } from 'styles'
 import { classnames as twc } from 'tailwindcss-classnames';
 
 const headTheme = twc(
-    'p-5',
+    'p-2',
+    'lg:p-5',
     'bg-c-main',
     'flex',
     'gap-10',
@@ -33,14 +34,16 @@ const Header = () => {
     return (
         <>
             <header className={headTheme}>
-                <h1 className='lg:text-2xl text-xl text-white font-bold'>우성 소프트</h1>
+                <h1 className='lg:text-2xl text-xl text-white font-bold'>
+                    우성 소프트
+                </h1>
                 <div className={navBlock}>
                     <HeaderNav />
                 </div>
                 <div className="btn"><DropDown marginList={false} /></div>
             </header>
             <div className={moNav}>
-                <HeaderNav gap={2} />
+                <HeaderNav />
             </div>
         </>
     )

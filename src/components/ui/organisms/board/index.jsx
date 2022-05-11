@@ -85,7 +85,9 @@ const Board = ({ tit }) => {
 
     return (
         <>
-            <BoardOption options={cate} onChange={setActive} cate={activeCate} />
+            <div className='my-2'>
+                <BoardOption options={cate} onChange={setActive} cate={activeCate} />
+            </div>
             <BoardBody>
                 {board.map((ele, index) => <TableRow data={ele} key={index} index={index + (page * 10)} mode={tit} />)}
             </BoardBody>

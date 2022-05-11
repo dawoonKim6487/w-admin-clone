@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
+import Board from './pages/board'
 import Home from './pages/home'
 import Zoom from './pages/zoom'
 import News from './pages/news'
@@ -11,7 +12,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
 
-        <Route path='/board/*' element={<Home />}>
+        <Route path='/board/*' element={<Board />}>
           <Route path=':mode' />
         </Route>
 

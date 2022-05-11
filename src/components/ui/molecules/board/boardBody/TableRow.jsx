@@ -7,7 +7,7 @@ const TableRow = ({ data, index, mode }) => {
     return (
         <tr className='cursor-pointer'>
             <td className='hidden lg:table-cell w-1/12'>{index + 1}</td>
-            <td className='w-1/12'>{cate}</td>
+            <td className='w-1/4 lg:w-1/12'>{cate}</td>
             <td className='text-left'>
                 <Link to={path} >
                     <span className='hover:text-orange-700'>
